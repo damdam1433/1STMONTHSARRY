@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Happy Monthsary!</title>
+	<style>
+		* { box-sizing: border-box; }
+		body {
+			min-height: 100vh;
+			margin: 0;
+			padding: 24px;
+			display: grid;
+			place-items: center;
+			background: linear-gradient(135deg, #ffe2eb, #fff2d6, #f3ddff);
+			color: #713e55;
+			font-family: "Trebuchet MS", Arial, sans-serif;
+			text-align: center;
+		}
+		.card {
+			width: min(920px, 100%);
+			padding: clamp(32px, 7vw, 76px);
+			border: 4px solid white;
+			border-radius: 40px;
+			background: rgba(255,255,255,.82);
+			box-shadow: 0 24px 70px #9d50712b;
+		}
+		.eyebrow { font-size: clamp(1.1rem, 3vw, 1.6rem); letter-spacing: .14em; }
+		h1 {
+			margin: 14px 0;
+			color: #e65383;
+			font-size: clamp(3.2rem, 11vw, 7.5rem);
+			line-height: .96;
+			text-shadow: 4px 5px 0 #ffd2e0;
+		}
+		.heart { margin: 18px; font-size: clamp(3.5rem, 8vw, 5rem); animation: heartbeat 1s infinite; }
+		.intro { margin: 22px 0 34px; font-size: clamp(1.2rem, 3vw, 1.8rem); line-height: 1.6; }
+		button {
+			padding: 20px 34px;
+			border: 0;
+			border-radius: 999px;
+			background: linear-gradient(135deg, #ff79a7, #e65383);
+			box-shadow: 0 8px 0 #c33d6c;
+			color: white;
+			font: inherit;
+			font-size: clamp(1.2rem, 3vw, 1.6rem);
+			font-weight: bold;
+			cursor: pointer;
+			transition: transform .2s;
+		}
+		button:hover { transform: translateY(-3px); }
+		button:active { transform: translateY(5px); box-shadow: 0 3px 0 #c33d6c; }
+		.love-question { margin: 0 auto 28px; }
+		.love-question h2 { margin: 0 0 18px; color: #e65383; font-size: clamp(1.7rem, 5vw, 2.5rem); }
+		.answer-area { position: relative; display: flex; justify-content: center; gap: 18px; min-height: 78px; }
+		.answer-area button { padding: 14px 28px; font-size: 1.15rem; }
+		#noButton { background: linear-gradient(135deg, #aaa, #777); box-shadow: 0 6px 0 #666; }
+		#loveButton { display: none; }
+		#loveButton.ready { display: inline-block; }
+		#message {
+			display: none;
+			margin: 38px auto 0;
+			padding: clamp(24px, 5vw, 42px);
+			max-width: 760px;
+			border-radius: 26px;
+			background: #fff2f7;
+			text-align: left;
+			font-size: clamp(1.08rem, 2.4vw, 1.35rem);
+			line-height: 1.9;
+		}
+		#message.show { display: block; animation: appear .5s ease-out; }
+		#message p { margin: 0 0 18px; }
+		#message p:last-child { margin: 0; color: #e65383; font-weight: bold; text-align: center; }
+		.signature { margin-top: 30px; font-size: 1.1rem; }
+		@keyframes heartbeat { 50% { transform: scale(1.15); } }
+		@keyframes appear { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+	</style>
+</head>
+<body>
+	<main class="card">
+		<div class="eyebrow">A LITTLE CELEBRATION OF US</div>
+		<div class="heart" aria-hidden="true">💗</div>
+		<h1>Happy<br>Monthsary!</h1>
+		<p class="intro">To my favorite person,<br>I've got a little love note for you.</p>
+		<div class="love-question" id="loveQuestion">
+			<h2>Do you love me?</h2>
+			<div class="answer-area" id="answerArea">
+				<button id="yesButton" type="button">Yes 💖</button>
+				<button id="noButton" type="button">No 🙈</button>
+			</div>
+		</div>
+		<button id="loveButton" type="button" aria-expanded="false" aria-controls="message">Tap for your surprise 💌</button>
+		<section id="message" aria-live="polite">
+			<p>My asawa, happy monthsary! I'm so grateful that we found each other. Talking to you every day brings something wonderful into my life, whether we're sharing a memories or simply talking about how our day went.</p>
+            <p>You're the one of the reason I'm still alive to this day, you're a blessing in disguise, you're the reason I smile every day </p>
+			<p>Thank you for making me laugh, listening to me, and being your thoughtful, lovely self. I treasure all the little things we share: our conversations, our silly moments, the memories we're making, and the comfort of having you by my side.</p>
+			<p>Being with you reminds me that love is made of a thousand small choices—to care, to understand, to cheer each other on. I promise to keep appreciating you, supporting your dreams, and making room for all the happiness still ahead of us.</p>
+			<p>Here's to more sweet memories, more laughter, and many more little milestones together even though we're thousand miles away from each other. You mean so much to me, and I feel lucky every day to have you in my life. No matter how many months pass, I hope we never run out of reasons to smile together.</p>
+			<p>Happy monthsary, my baby, see you next month. I love you 3000! 💕</p>
+			<p>Always yours, Damien Angcon🧸</p>
+		</section>
+		<div class="signature">Made with lots of love and extra hearts ✨</div>
+	</main>
+	<script>
+		const button = document.getElementById('loveButton');
+		const message = document.getElementById('message');
+		const question = document.getElementById('loveQuestion');
+		const answerArea = document.getElementById('answerArea');
+		const noButton = document.getElementById('noButton');
+		document.getElementById('yesButton').addEventListener('click', () => {
+			question.hidden = true;
+			button.classList.add('ready');
+		});
+		const moveNoButton = () => {
+			const area = answerArea.getBoundingClientRect();
+			const maxX = Math.max(0, area.width - noButton.offsetWidth);
+			const maxY = Math.max(0, area.height - noButton.offsetHeight);
+			noButton.style.position = 'absolute';
+			noButton.style.left = `${Math.random() * maxX}px`;
+			noButton.style.top = `${Math.random() * maxY}px`;
+		};
+		noButton.addEventListener('pointerenter', moveNoButton);
+		noButton.addEventListener('click', (event) => {
+			event.preventDefault();
+			moveNoButton();
+		});
+		button.addEventListener('click', () => {
+			const isOpen = message.classList.toggle('show');
+			button.setAttribute('aria-expanded', String(isOpen));
+			button.textContent = isOpen ? 'Hide the note 💖' : 'Tap for your surprise 💌';
+			if (isOpen) message.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+		});
+	</script>
+</body>
+</html>
+
