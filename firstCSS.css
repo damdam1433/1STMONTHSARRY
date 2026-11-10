@@ -1,0 +1,112 @@
+
+:root {
+	--pink: #f27b91;
+	--rose: #a83e62;
+	--ink: #593746;
+	--cream: #fff8f5;
+	--blush: #ffe4e9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	padding: clamp(1.25rem, 5vw, 4rem);
+	display: grid;
+	place-items: center;
+	color: var(--ink);
+	background:
+		radial-gradient(ellipse at 12% 18%, #ffc4d044, transparent 28rem),
+		radial-gradient(ellipse at 88% 82%, #ffddb744, transparent 30rem),
+		var(--cream);
+	font-family: "Nunito", "Trebuchet MS", sans-serif;
+	font-size: clamp(1.08rem, 0.8vw + 0.9rem, 1.35rem);
+	line-height: 1.8;
+	letter-spacing: 0.02em;
+	word-spacing: 0.08em;
+}
+
+h1, h2, h3 {
+	color: var(--rose);
+	font-family: Georgia, serif;
+	line-height: 1.15;
+}
+
+h1 {
+	margin: 0 0 1rem;
+	font-size: clamp(2.6rem, 8vw, 5.5rem);
+	letter-spacing: -0.045em;
+}
+
+p { line-height: 1.75; }
+
+a {
+	color: var(--rose);
+	text-decoration-color: #ef9aab;
+	text-underline-offset: 0.2em;
+}
+
+button, .button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.55rem;
+	min-height: 3rem;
+	padding: 0.8rem 1.4rem;
+	border: 0;
+	border-radius: 999px;
+	color: white;
+	background: linear-gradient(135deg, #f498aa, var(--pink));
+	box-shadow: 0 8px 20px #e85d753d;
+	font: inherit;
+	font-weight: 800;
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+button:hover, .button:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 12px 25px #e85d7552;
+}
+
+button:focus-visible, a:focus-visible {
+	outline: 3px solid #f3a5b4;
+	outline-offset: 4px;
+}
+
+.card, .love-card, .valentine-card {
+	width: min(100%, 42rem);
+	padding: clamp(2rem, 7vw, 4.5rem);
+	border: 1px solid #e85d7520;
+	border-radius: 2rem;
+	background: #ffffffd1;
+	box-shadow: 0 18px 50px #a8325b24;
+	text-align: center;
+	backdrop-filter: blur(12px);
+}
+
+.heart {
+	display: inline-block;
+	color: var(--pink);
+	animation: heart-beat 1.4s ease-in-out infinite;
+}
+
+::selection { color: var(--rose); background: var(--blush); }
+
+@keyframes heart-beat {
+	0%, 100% { transform: scale(1); }
+	14% { transform: scale(1.18); }
+	28% { transform: scale(1); }
+	42% { transform: scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+}
