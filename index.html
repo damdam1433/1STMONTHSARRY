@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="first.css">
+	<style>
+		.card {
+			box-sizing: border-box;
+			width: min(92vw, 760px);
+			padding: clamp(2rem, 6vw, 4rem);
+			position: relative;
+			z-index: 2;
+		}
+		.flower-rain {
+			position: fixed;
+			inset: 0;
+			overflow: hidden;
+			pointer-events: none;
+			z-index: 1;
+		}
+		.falling-flower {
+			position: absolute;
+			top: -3rem;
+			left: var(--flower-left);
+			font-size: clamp(1.5rem, 3vw, 2.4rem);
+			will-change: transform;
+			animation: flower-fall var(--fall-duration) linear var(--fall-delay) infinite;
+		}
+		h1 {
+			font-size: clamp(2.8rem, 8vw, 4.5rem);
+			line-height: 1.08;
+		}
+		.intro, #message {
+			font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+			line-height: 1.85;
+		}
+		#message p {
+			margin: 0 0 1.25em;
+		}
+		.card {
+			animation: card-arrive 800ms cubic-bezier(.2,.8,.2,1) both;
+		}
+		.heart {
+			display: inline-block;
+			animation: heart-float 2.2s ease-in-out infinite;
+			transform-origin: center;
+		}
+		button {
+			position: relative;
+			overflow: hidden;
+			transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+		}
+		button:hover {
+			transform: translateY(-3px) scale(1.05);
+			box-shadow: 0 8px 18px rgba(217, 72, 124, .28);
+			filter: saturate(1.2);
+		}
+		button:active {
+			transform: scale(.94);
+		}
+		#yesButton {
+			animation: yes-pulse 2s ease-in-out infinite;
+		}
+		#showMessageButton {
+			animation: button-pop 400ms cubic-bezier(.2,1.5,.5,1) both;
+		}
+		#message {
+			animation: message-reveal 600ms ease both;
+		}
+		@keyframes card-arrive {
+			from { opacity: 0; transform: translateY(24px) scale(.97); }
+			to { opacity: 1; transform: translateY(0) scale(1); }
+		}
+		@keyframes heart-float {
+			0%, 100% { transform: translateY(0) rotate(-5deg) scale(1); }
+			50% { transform: translateY(-9px) rotate(5deg) scale(1.12); }
+		}
+		@keyframes yes-pulse {
+			0%, 100% { box-shadow: 0 0 0 0 rgba(230, 83, 132, .25); }
+			50% { box-shadow: 0 0 0 8px rgba(230, 83, 132, 0); }
+		}
+		@keyframes button-pop {
+			from { opacity: 0; transform: scale(.8); }
+			to { opacity: 1; transform: scale(1); }
+		}
+		@keyframes message-reveal {
+			from { opacity: 0; transform: translateY(12px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+		@keyframes flower-fall {
+			0% { transform: translate3d(0, -5vh, 0) rotate(0deg); }
+			50% { transform: translate3d(28px, 55vh, 0) rotate(180deg); }
+			100% { transform: translate3d(-12px, 110vh, 0) rotate(360deg); }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+		}
+	</style>
+	<title>Happy Monthsary!</title>
+</head>
+<body>
+	<div class="flower-rain" aria-hidden="true">
+		<span class="falling-flower" style="--flower-left: 6%; --fall-duration: 12s; --fall-delay: -8s;">🌻</span>
+		<span class="falling-flower" style="--flower-left: 18%; --fall-duration: 15s; --fall-delay: -3s;">🌹</span>
+		<span class="falling-flower" style="--flower-left: 31%; --fall-duration: 11s; --fall-delay: -6s;">🌻</span>
+		<span class="falling-flower" style="--flower-left: 44%; --fall-duration: 14s; --fall-delay: -10s;">🌹</span>
+		<span class="falling-flower" style="--flower-left: 57%; --fall-duration: 13s; --fall-delay: -2s;">🌻</span>
+		<span class="falling-flower" style="--flower-left: 69%; --fall-duration: 16s; --fall-delay: -7s;">🌹</span>
+		<span class="falling-flower" style="--flower-left: 82%; --fall-duration: 12s; --fall-delay: -5s;">🌻</span>
+		<span class="falling-flower" style="--flower-left: 94%; --fall-duration: 15s; --fall-delay: -11s;">🌹</span>
+	</div>
+	<main class="card">
+		<div class="eyebrow">A LITTLE CELEBRATION OF US</div>
+		<div class="heart" aria-hidden="true">💗</div>
+		<h1>Happy<br>Monthsary!</h1>
+		<p class="intro">To my favorite person,<br>I've got a little love note for you.</p>
+		<div class="love-question" id="loveQuestion">
+			<h2>Do you love me?</h2>
+			<div class="answer-area" id="answerArea">
+				<button id="yesButton" type="button">Yes </button>
+				<button id="noButton" type="button">No </button>
+			</div>
+		</div>
+		<button id="showMessageButton" type="button" style="display: none;">Read my love note</button>
+		<section id="message" aria-live="polite" style="display: none;">
+			<p>My asawa, happy monthsary! I'm so grateful that we found each other. Talking to you every day brings something wonderful into my life, whether we're sharing a memories or simply talking about how our day went.</p>
+            <p>You're the one of the reason I'm still alive to this day, you're a blessing in disguise, you're the reason I smile every day </p>
+			<p>Thank you for making me laugh, listening to me, and being your thoughtful, lovely self. I treasure all the little things we share: our conversations, our silly moments, the memories we're making, and the comfort of having you by my side.</p>
+			<p>Being with you reminds me that love is made of a thousand small choices—to care, to understand, to cheer each other on. I promise to keep appreciating you, supporting your dreams, and making room for all the happiness still ahead of us.</p>
+			<p>Here's to more sweet memories, more laughter, and many more little milestones together even though we're thousand miles away from each other. You mean so much to me, and I feel lucky every day to have you in my life. No matter how many months pass, I hope we never run out of reasons to smile together.</p>
+			<p>Happy monthsary, my baby, see you next month. I love you 3000! 💕</p>
+			<p>Always yours, Damien Angcon🧸</p>
+		</section>
+		<div class="signature">Made with lots of love and extra hearts ✨</div>
+	</main>
+	<script>
+		const noButton = document.getElementById('noButton');
+		const message = document.getElementById('message');
+		const showMessageButton = document.getElementById('showMessageButton');
+
+		function moveNoButton() {
+			const maxX = Math.max(0, window.innerWidth - noButton.offsetWidth);
+			const maxY = Math.max(0, window.innerHeight - noButton.offsetHeight);
+			noButton.style.position = 'fixed';
+			noButton.style.left = `${Math.random() * maxX}px`;
+			noButton.style.top = `${Math.random() * maxY}px`;
+			noButton.style.zIndex = '10';
+		}
+
+		noButton.addEventListener('pointerenter', moveNoButton);
+		noButton.addEventListener('click', moveNoButton);
+
+		document.getElementById('yesButton').addEventListener('click', () => {
+			document.getElementById('loveQuestion').style.display = 'none';
+			showMessageButton.style.display = 'inline-block';
+		});
+
+		showMessageButton.addEventListener('click', () => {
+			message.style.display = 'block';
+			showMessageButton.style.display = 'none';
+		});
+	</script> 
+</body>
+</html>
